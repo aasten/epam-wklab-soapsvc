@@ -6,12 +6,23 @@
 
     <groupId>com.epam.wklab</groupId>
     <artifactId>soapsvc</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${global.version}</version>
     <packaging>pom</packaging>
 
     <modules>
         <module>server</module>
         <module>client</module>
     </modules>
+
+    <properties>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+
+        <global.version>1.0-SNAPSHOT</global.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <cxf.version>3.1.10</cxf.version>
+        <cxf.scope>compile</cxf.scope>
+    </properties>
 
 </project>
