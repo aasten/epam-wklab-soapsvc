@@ -25,7 +25,7 @@ public class TestServer {
 
     private static Scanner s = new Scanner(System.in);
     private static ObjectFactory obf = new ObjectFactory();
-    private static final String DATE_FORMAT = "dd/MM/yyy";
+    private static final String DATE_FORMAT = "dd/MM/yyyy";
     private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat(DATE_FORMAT);
     private static final String ENDPOINT_ADDRESS = "http://localhost:7070/soapservice/PersonFriends";
 
@@ -34,11 +34,11 @@ public class TestServer {
         return s.nextLine();
     }
 
-    public static Person createPerson() {
+    private static Person createPerson() {
         Person p = obf.createPerson();
         p.setName(getValueOf("Person's name"));
         boolean gotBirth = false;
-        while(false == gotBirth) {
+        while(!gotBirth) {
             String birth = getValueOf("Person's birth (" + DATE_FORMAT + ")");
             try {
                 Date birthDate = DATE_FORMATTER.parse(birth);
@@ -56,7 +56,7 @@ public class TestServer {
 
         p.setFriends(new Friends());
         boolean chooseEndFriends = false;
-        while(false == chooseEndFriends) {
+        while(!chooseEndFriends) {
             System.out.println("[a] - add new friend, [e] - end of forming person " + p.getName());
             String choose = s.nextLine();
             if (choose.toLowerCase().contains("a")) {
