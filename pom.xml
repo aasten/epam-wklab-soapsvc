@@ -15,12 +15,14 @@
     </modules>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
 
         <global.version>1.0-SNAPSHOT</global.version>
 
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <exec.version>1.6.0</exec.version>
         <cxf.version>3.1.10</cxf.version>
         <cxf.scope>compile</cxf.scope>
         <checkstyle.version>2.17</checkstyle.version>
@@ -90,15 +92,16 @@
                 <version>${checkstyle.version}</version>
                 <executions>
                     <execution>
-                        <phase>compile</phase>
+                        <!--phase should be validate-->
+                        <phase>validate</phase>
+                        <!--<phase>compile</phase>-->
                         <goals>
                             <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <!--<excludes>${pom.basedir}/**/generated/**/*.java</excludes>-->
-                    <excludes>${pom.basedir}/**/target/**/*</excludes>
+                    <excludes>^target/generated-sources</excludes>
                 </configuration>
             </plugin>
         </plugins>

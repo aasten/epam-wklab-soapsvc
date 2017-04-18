@@ -21,31 +21,52 @@ import java.util.Scanner;
 /**
  * Created by sten on 12.04.17.
  */
-public class TestServer {
+public final class TestServer {
 
+    /** Parsing user input. */
     private static Scanner s = new Scanner(System.in);
+    /** Bean factory. */
     private static ObjectFactory obf = new ObjectFactory();
+    /** Date format pattern used through this class. */
     private static final String DATE_FORMAT = "dd/MM/yyyy";
-    private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat(DATE_FORMAT);
-    private static final String ENDPOINT_ADDRESS = "http://localhost:7070/soapservice/PersonFriends";
+    /** Date formatting object. */
+    private static final SimpleDateFormat DATE_FORMATTER =
+            new SimpleDateFormat(DATE_FORMAT);
+    /** Permanent address of the tested service. */
+    private static final String ENDPOINT_ADDRESS =
+            "http://localhost:7070/soapservice/PersonFriends";
 
-    private static String getValueOf(String what) {
+    /**
+     * Required by checkstyle plugin.
+     */
+    private TestServer() { }
+
+    /**
+     * @param what Request to user
+     * @return User's answer
+     */
+    private static String getValueOf(final String what) {
         System.out.print(what + ":");
         return s.nextLine();
     }
 
+    /**
+     * Creating person utility method via console dialog with user.
+     * @return Person bean formed by user.
+     */
     private static Person createPerson() {
         Person p = obf.createPerson();
         p.setName(getValueOf("Person's name"));
         boolean gotBirth = false;
-        while(!gotBirth) {
+        while (!gotBirth) {
             String birth = getValueOf("Person's birth (" + DATE_FORMAT + ")");
             try {
                 Date birthDate = DATE_FORMATTER.parse(birth);
                 gotBirth = true;
                 GregorianCalendar c = new GregorianCalendar();
                 c.setTime(birthDate);
-                XMLGregorianCalendar xc = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+                XMLGregorianCalendar xc =
+                    DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
                 p.setBirth(xc);
             } catch (ParseException e) {
                 System.err.println("Wrong date format");
@@ -56,8 +77,10 @@ public class TestServer {
 
         p.setFriends(new Friends());
         boolean chooseEndFriends = false;
-        while(!chooseEndFriends) {
-            System.out.println("[a] - add new friend, [e] - end of forming person " + p.getName());
+        while (!chooseEndFriends) {
+            System.out.println(
+                    "[a] - add new friend, [e] - end of forming person "
+                    + p.getName());
             String choose = s.nextLine();
             if (choose.toLowerCase().contains("a")) {
                 System.out.println("*** Creating new friend ***");
@@ -70,7 +93,11 @@ public class TestServer {
         return p;
     }
 
-    public static void main(String[] args) {
+    /**
+     * Entry point of client tester.
+     * @param args this description is stupidly required by checkstyle plugin.
+     */
+    public static void main(final String[] args) {
 
         Person p = createPerson();
 
@@ -96,7 +123,7 @@ public class TestServer {
             final int friendsCount = response.getPerson().size();
             System.out.println("Matched friends count " + friendsCount);
 
-            for(Person f : response.getPerson()) {
+            for (final Person f : response.getPerson()) {
                 printFriend(f);
             }
         } catch (NoMatchedFriendsException_Exception e) {
@@ -106,9 +133,14 @@ public class TestServer {
 
     }
 
-    private static void printFriend(Person p) {
+    /**
+     * Printing task-related Person bean contents to console.
+     * @param p bean to print
+     */
+    private static void printFriend(final Person p) {
         System.out.println("Friend name: " + p.getName());
-        System.out.println("Friend birth: " +
-                DATE_FORMATTER.format(p.getBirth().toGregorianCalendar().getTime()));
+        System.out.println("Friend birth: "
+                + DATE_FORMATTER.format(
+                        p.getBirth().toGregorianCalendar().getTime()));
     }
 }
