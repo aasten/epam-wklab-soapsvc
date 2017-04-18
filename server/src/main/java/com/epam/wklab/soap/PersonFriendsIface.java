@@ -7,16 +7,23 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
-import java.util.List;
 
 /**
  * Created by sten on 11.04.17.
  */
 @WebService
 public interface PersonFriendsIface {
+    /**
+     * @param p Person to get friends of year #year
+     * @param year Checked year
+     * @return Friends generated bean class instance
+     * @throws NoMatchedFriendsException if there is no friends
+     * matching given year
+     */
     @WebMethod
-    @WebResult(name="friends")
+    @WebResult(name = "friends")
     Friends getFriends(
             @WebParam(name = "person") Person p,
-            @WebParam(name = "year") Integer year) throws NoMatchedFriendsException;
+            @WebParam(name = "year") Integer year)
+                throws NoMatchedFriendsException;
 }

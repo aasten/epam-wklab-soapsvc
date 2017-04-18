@@ -12,16 +12,25 @@ import javax.jws.WebService;
 @WebService
 public class PersonFriends implements PersonFriendsIface {
 
+    /**
+     *
+     * @param p Person to get friends of year #year
+     * @param year Checked year
+     * @return Friends generated bean
+     * @throws NoMatchedFriendsException
+     */
     @WebMethod
-    public Friends getFriends(Person p, Integer year) throws NoMatchedFriendsException {
+    @Override
+    public final Friends getFriends(final Person p, final Integer year)
+            throws NoMatchedFriendsException {
 
         Friends matchedFriends = new Friends();
-        for(Person f : p.getFriends().getPerson()) {
-            if(f.getBirth().getYear() == year) {
+        for (Person f : p.getFriends().getPerson()) {
+            if (f.getBirth().getYear() == year) {
                 matchedFriends.getPerson().add(f);
             }
         }
-        if(matchedFriends.getPerson().isEmpty()) {
+        if (matchedFriends.getPerson().isEmpty()) {
             StringBuilder sb = new StringBuilder();
             sb.append("No matched friends of person \"");
             sb.append(p.getName());
