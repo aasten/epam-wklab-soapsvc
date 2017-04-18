@@ -101,7 +101,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <excludes>^target/generated-sources</excludes>
+                    <excludes>^target</excludes>
                 </configuration>
             </plugin>
         </plugins>
