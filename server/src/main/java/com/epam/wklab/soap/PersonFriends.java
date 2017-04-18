@@ -17,7 +17,8 @@ public class PersonFriends implements PersonFriendsIface {
      * @param p Person to get friends of year #year
      * @param year Checked year
      * @return Friends generated bean
-     * @throws NoMatchedFriendsException
+     * @throws NoMatchedFriendsException if no matching friends of person
+     * born in specified year
      */
     @WebMethod
     @Override
