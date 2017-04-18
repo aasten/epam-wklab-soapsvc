@@ -21,12 +21,24 @@ Demonstrate work of the Web Service in it.
 # Solution
 
 Run server first with:
+
+(on Unix)
 ```
-cd server/
-mvn package tomcat7:run-war
+bash run_server.bat
 ```
-The run client with:
+
+(on Windows)
 ```
-cd client/
-mvn exec:java
+run_server.bat
+```
+Then run client with:
+
+(on Unix)
+```
+bash run_server.bat
+```
+
+(on Windows)
+```
+run_server.bat
 ```
