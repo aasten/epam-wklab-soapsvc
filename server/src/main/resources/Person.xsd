@@ -2,11 +2,6 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://wklab.epam.com/Person"
         xmlns:tns="http://wklab.epam.com/Person">
 
-
-    <!--xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"-->
-    <!--jaxb:version="1.0" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"-->
-    <!--jaxb:extensionBindingPrefixes="xjc"-->
-
     <complexType name="Friends">
         <sequence>
             <element maxOccurs="unbounded" ref="tns:Person" />
