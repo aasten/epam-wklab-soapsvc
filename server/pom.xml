@@ -109,16 +109,7 @@
                     <path>/soapservice</path>
                 </configuration>
             </plugin>
-
-
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-checkstyle-plugin</artifactId>-->
-                <!--&lt;!&ndash;<configuration>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<excludes>^target</excludes>&ndash;&gt;-->
-                <!--&lt;!&ndash;</configuration>&ndash;&gt;-->
-            <!--</plugin>-->
-
+                 
         </plugins>
     </build>
 
